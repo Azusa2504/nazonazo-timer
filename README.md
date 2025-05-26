@@ -46,10 +46,9 @@
 
 ![Screenshot_20250526_230410_timer.jpg](https://github.com/user-attachments/assets/53bb72d2-4123-449a-a61f-7c8ccedb7c09)
 
+![Screenshot_20250526_230504_timer.jpg](https://github.com/user-attachments/assets/146289a9-544d-4871-a005-6cf22ebaa411)
 
-※ スクショ画像は必要なら貼り付け
 
-（`![alt text](画像URL)` の形式）
 
 
 
