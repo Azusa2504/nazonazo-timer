@@ -48,11 +48,9 @@
 
 ![Screenshot_20250526_230504_timer.jpg](https://github.com/user-attachments/assets/146289a9-544d-4871-a005-6cf22ebaa411)
 
-
 ![Screenshot_20250526_230538_timer.jpg](https://github.com/user-attachments/assets/2e5da27b-c815-4842-b5cd-85c54e953e7f)
 
-
-
+![Screenshot_20250526_230558_timer~2.jpg](https://github.com/user-attachments/assets/6a824244-b6c4-4b54-b4e9-9d5c4743fa2b)
 
 ## ライセンス（必要に応じて）
 
