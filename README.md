@@ -63,4 +63,4 @@ https://youtu.be/-9WJyVwngTA?si=TLHWur28J7v3kQX4
 
 ## ライセンス（必要に応じて）
 
-このリポジトリは現在非公開です。本プロジェクトは、外部ライブラリを使用せず、KotlinおよびJetpack Composeの標準機能のみで構成されています。
+本プロジェクトは、外部ライブラリを使用せず、KotlinおよびJetpack Composeの標準機能のみで構成されています。
