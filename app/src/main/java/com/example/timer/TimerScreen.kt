@@ -588,7 +588,7 @@ if(!isInitialized){
                         }
                     ) {
                         Text(
-                            "はるちゃんゆうちゃんのいえ",
+                            "みんなのおうち",
                             color = Color(0xFF6A0DAD),
                             modifier = Modifier.padding(bottom = 16.dp)
                         )
