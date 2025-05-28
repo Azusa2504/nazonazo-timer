@@ -1,68 +1,53 @@
 package com.example.timer
 
-import android.app.AlarmManager
-import android.app.PendingIntent
-import android.content.Context
-import android.content.Intent
-import android.media.MediaPlayer
-import android.os.Build
-import android.provider.Settings
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.offset
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.derivedStateOf
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.foundation.layout.*
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
+import kotlinx.coroutines.delay
+import androidx.compose.ui.unit.IntOffset
+import androidx.compose.ui.layout.onGloballyPositioned
+import androidx.compose.ui.platform.LocalDensity
+import kotlin.math.roundToInt
+import android.media.MediaPlayer
+import androidx.compose.ui.platform.LocalContext
+import android.util.Log
+import androidx.compose.animation.*
+import androidx.compose.animation.core.*
+import kotlinx.coroutines.delay
+import androidx.compose.ui.draw.clip
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.background
+import android.app.AlarmManager
+import android.app.PendingIntent
+import android.content.Intent
+import android.content.Context
+import android.os.SystemClock
+import android.os.Build
+import android.provider.Settings
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Shadow
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.layout.onGloballyPositioned
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalDensity
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
-import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import kotlinx.coroutines.delay
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 
 
 fun setAlarm(context: Context, delayMillis: Long) {
@@ -152,7 +137,7 @@ fun TimerScreen(modifier: Modifier = Modifier) {
             else {
                 val rightMargin = 32.dp
                 val progress = timeLeft.toFloat() / totalTime
-                val totalDistancePx = containerWidth - imageSizePx + with(density) { 0.dp.toPx()  }
+                val totalDistancePx = containerWidth - imageSizePx + with(density) { 0.dp.toPx()  } // ← ここ！
                 Dp(progress * totalDistancePx / density.density)
             }
         }
@@ -275,58 +260,41 @@ if(!isInitialized){
             .verticalScroll(scrollState)
             .padding(16.dp)
     ) {
-        Box(
-            modifier = Modifier.fillMaxWidth(),
-            contentAlignment = Alignment.Center
-        ) {
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier
-                    .padding(top = 24.dp, bottom = 8.dp)
-            ) {
-                Image(
-                    painter = painterResource(id = R.drawable.title_logo), // ← 実際の画像名に合わせて
-                    contentDescription = "アプリアイコン",
-                    modifier = Modifier
-                        .size(60.dp)
-                        .padding(end = 0.dp)
-                        .offset(y = 2.dp)
-                )
-                Text(
-                    buildAnnotatedString {
-                        withStyle(
-                            style = SpanStyle(
-                                fontSize = 34.sp,
-                                fontWeight = FontWeight.Thin,
-                                fontStyle =
-                                    FontStyle.Italic,
-                                color = Color(0xFF424242),
+        Text(
+            buildAnnotatedString {
+                withStyle(
+                    style = SpanStyle(
+                        fontSize = 34.sp,
+                        fontWeight = FontWeight.Thin,
+                        fontStyle =
+                            FontStyle.Italic,
+                        color = Color(0xFF424242),
 
-                                )
-                        ) {
-                            append("なぞなぞ")
-                        }
-                        withStyle(
-                            style = SpanStyle(
-                                fontSize = 36.sp,
-                                fontWeight = FontWeight.Bold,
-                                color = Color(0xFF42A5F5),
-                                shadow = Shadow(
-                                    color = Color.Gray,
-                                    offset = Offset(2f, 2f),
-                                    blurRadius = 4f
-                                )
-                            )
-                        ) {
-                            append("タイマー")
-                        }
-                    },
-                    modifier = Modifier
-                        .padding(top = 24.dp, bottom = 24.dp),
-                    textAlign = TextAlign.Center
-                )
-            }
-        }
+                        )
+                ) {
+                    append("なぞなぞ")
+                }
+                withStyle(
+                    style = SpanStyle(
+                        fontSize = 36.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = Color(0xFF42A5F5), // カッコかわいいブルー
+                        shadow = Shadow(
+                            color = Color.Gray,
+                            offset = Offset(2f, 2f),
+                            blurRadius = 4f
+                        )
+                    )
+                ) {
+                    append("タイマー")
+                }
+            },
+            modifier = Modifier
+                .padding(top = 24.dp, bottom = 24.dp)
+                .align(Alignment.CenterHorizontally),
+            textAlign = TextAlign.Center
+        )
+
         if (!riddleMode) {
 
             OutlinedTextField(
@@ -490,7 +458,26 @@ if(!isInitialized){
 
                 Spacer(modifier = Modifier.height(24.dp))
 
-
+                // 🔹 タップで答えを表示するゾーン
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    modifier = Modifier.clickable {
+                        showAnswer = true
+                        revealAnswer = false
+                    }
+                ) {
+                    Text("はるちゃんゆうちゃんのいえ", color = Color(0xFF6A0DAD))
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Row(horizontalArrangement = Arrangement.spacedBy(24.dp)) {
+                        listOf(R.drawable.home, R.drawable.tearai).forEach { imageRes ->
+                            Image(
+                                painter = painterResource(id = imageRes),
+                                contentDescription = null,
+                                modifier = Modifier.size(64.dp)
+                            )
+                        }
+                    }
+                }
             }
             if ((isArrived || (riddleMode && selectedCar != null && currentRiddle.isEmpty()))) {
                 Box(
@@ -516,8 +503,8 @@ if(!isInitialized){
 
 
                             currentRiddle = ""
-                            riddleMode = true
-                            triggerRiddle = true
+                            riddleMode = true        // ← 必須！
+                            triggerRiddle = true     // ← 必須！
                             showAnswer = false       // ← 任意（答え非表示）
                             revealAnswer = false
                         },
@@ -592,7 +579,7 @@ if(!isInitialized){
 
                     Spacer(modifier = Modifier.height(24.dp))
 
-                    // みんなのおうちエリア
+                    // はるちゃんゆうちゃんのいえエリア
                     Column(
                         horizontalAlignment = Alignment.CenterHorizontally,
                         modifier = Modifier.clickable {
@@ -601,7 +588,7 @@ if(!isInitialized){
                         }
                     ) {
                         Text(
-                            "みんなのおうち",
+                            "はるちゃんゆうちゃんのいえ",
                             color = Color(0xFF6A0DAD),
                             modifier = Modifier.padding(bottom = 16.dp)
                         )
@@ -710,7 +697,7 @@ if(!isInitialized){
                             "しょうぼうしゃ！（しょうぼ「うし」ゃ）"
 
                         "とまっている　ときも　うごいていないと　いけない　くるまは　なーんだ？" ->
-                            "ミキサーしゃ！（ミキサーを　くるくる　まわさないと　コンクリートが　かたまっちゃうよ！）"
+                            "ミキサーしゃ！（ミキサーを　くるくる　まわさないと　コンクリートが　かたまっちゃうよ"
 
                         "べろが　まっくろな　のりもの　なーんだ？" ->
                             "タンクローリー！（タンがクロ）"
