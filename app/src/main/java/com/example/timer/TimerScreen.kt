@@ -503,9 +503,9 @@ if(!isInitialized){
 
 
                             currentRiddle = ""
-                            riddleMode = true        // ← 必須！
-                            triggerRiddle = true     // ← 必須！
-                            showAnswer = false       // ← 任意（答え非表示）
+                            riddleMode = true        
+                            triggerRiddle = true     /
+                            showAnswer = false       //  任意（答え非表示）
                             revealAnswer = false
                         },
                         colors = ButtonDefaults.buttonColors(
