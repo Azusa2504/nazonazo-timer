@@ -579,7 +579,7 @@ if(!isInitialized){
 
                     Spacer(modifier = Modifier.height(24.dp))
 
-                    // はるちゃんゆうちゃんのいえエリア
+                    // みんなのおうちエリア
                     Column(
                         horizontalAlignment = Alignment.CenterHorizontally,
                         modifier = Modifier.clickable {
