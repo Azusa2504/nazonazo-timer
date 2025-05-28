@@ -23,7 +23,7 @@
 - Jetpack Compose
 - 状態管理：`remember`, `mutableStateOf`
 - `LaunchedEffect` を使った非同期処理
-- Android Studio Flamingo / API 33 で動作確認済
+- Android Emulator:Medium Phone (API 36)  で動作確認済
 - 実機: Galaxy S24 (Android 14) で動作確認済
 
 ## 開発の背景・経緯
